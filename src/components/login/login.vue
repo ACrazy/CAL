@@ -16,8 +16,19 @@
                   <el-radio v-model="radio" label="2">系统管理员</el-radio>
                 </div>
               </div>
-              <el-input placeholder="请输入用户名" suffix-icon="el-icon-user" v-model="userName" class="login-input"></el-input>
-              <el-input placeholder="请输入密码" suffix-icon="el-icon-lock" show-password v-model="password" class="login-input" ></el-input>
+              <el-input
+                placeholder="请输入用户名"
+                suffix-icon="el-icon-user"
+                v-model="userName"
+                class="login-input"
+              ></el-input>
+              <el-input
+                placeholder="请输入密码"
+                suffix-icon="el-icon-lock"
+                show-password
+                v-model="password"
+                class="login-input"
+              ></el-input>
               <el-button type="primary" @click="submitForm()" class="submit-btn">提交</el-button>
               <div class="login-link">
                 <el-link :underline="false" class="pdr10">忘记密码</el-link>
@@ -38,10 +49,11 @@ export default {
       password: "",
       radio: "1"
     };
-  },methods:{
-      submitForm(){
-
-      }
+  },
+  methods: {
+    submitForm() {
+      this.$store.dispatch("setLoginState", false);
+    }
   }
 };
 </script>
@@ -100,7 +112,7 @@ export default {
     }
   }
 }
-.pdr10{
-        padding-right: 10px;
+.pdr10 {
+  padding-right: 10px;
 }
 </style>

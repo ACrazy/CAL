@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div class="login" v-show="true">
+    <div class="login" v-show="loginState">
       <login></login>
     </div>
-    <div class="content" v-show="false">
+    <div class="content" v-show="!loginState">
       <!-- 页面顶部 -->
       <header-menu></header-menu>
       <el-row>
@@ -31,6 +31,11 @@ export default {
     NavMenu,
     HeaderMenu,
     Login
+  },
+  computed:{
+    loginState(){
+      return this.$store.getters.getLoginState
+    }
   }
 };
 </script>
