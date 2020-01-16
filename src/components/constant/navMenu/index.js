@@ -1,4 +1,7 @@
 export const menuList = [{
+  title: '工作台',
+  tag: '#',
+}, {
   title: '账户管理',
   tag: '',
   children: [{

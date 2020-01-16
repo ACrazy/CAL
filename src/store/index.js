@@ -4,7 +4,7 @@ import Vuex from 'Vuex'
 Vue.use(Vuex)
 
 const state = {
-  loginState: true,//是否进入登录界面
+  loginState: true, //是否进入登录界面
 }
 const mutations = {
   SET_LOGIN_STATE(state, status) {
@@ -17,9 +17,7 @@ const actions = {
   }
 }
 const getters = {
-  getLoginState: (state) => {
-    return state.loginState
-  }
+  getLoginState: state => state.loginState
 }
 
 export default new Vuex.Store({
