@@ -1,56 +1,36 @@
 <template>
   <div id="app">
-    <div class="login" v-show="loginState">
-      <login></login>
-    </div>
-    <div class="content" v-show="!loginState">
-      <!-- 页面顶部 -->
-      <header-menu></header-menu>
-      <el-row>
-        <el-col :span="5">
-          <!-- 页面侧边 -->
-          <nav-menu></nav-menu>
-        </el-col>
-        <el-col :span="19">
-          <!-- 页面主体 -->
-          <div class="con-view">
-            <router-view />
-          </div>
-        </el-col>
-      </el-row>
-    </div>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 <script>
-import Login from "@com/login/login";
-import NavMenu from "@com/common/navMenu/navMenu";
-import HeaderMenu from "@com/common/headerMenu/headerMenu";
-export default {
-  name: "App",
-  components: {
-    NavMenu,
-    HeaderMenu,
-    Login
-  },
-  computed:{
-    loginState(){
-      return this.$store.getters.getLoginState
-    }
-  }
-};
 </script>
 <style scoped>
-.content {
-  /* border: 1px solid black; */
-  position: absolute;
-  width: 1100px;
-  height: 100%;
-  left: 50%;
-  margin-left: -550px;
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Microsoft YaHei, Helvetica Neue, Helvetica, PingFang SC,
+    Hiragino Sans GB, SimSun, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
 }
-.login {
-  height: 100%;
-  width: 100%;
+
+#app {
   position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>
