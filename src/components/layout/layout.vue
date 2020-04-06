@@ -16,6 +16,7 @@
     </el-container>
   </div>
 </template>
+
 <script>
 import layoutAside from "./aside/aside";
 import layoutHeader from "./header/header";
@@ -29,7 +30,23 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+
+<style>
+.main-enter,
+.main-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.main-enter-active {
+  transition: all 0.2s;
+}
+
+.main-leave-active {
+  position: absolute;
+  transition: all 0.3s;
+}
+</style><style lang="scss">
 * {
   margin: 0px;
   padding: 0px;

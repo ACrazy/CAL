@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@com/login/login'
 import Layout  from '@com/layout/layout'
 import Home from '@com/home/home'
+import SysSetting from '@com/sysSetting/sysSetting'
 
 Vue.use(Router)
 
@@ -24,6 +25,14 @@ export default new Router({
       children: [{
         path: '/index',
         component: Home
+      }]
+    },
+    {
+      path: '/aaaaa',
+      component: Layout,
+      children: [{
+        path: '/aa',
+        component: SysSetting
       }]
     }
   ]

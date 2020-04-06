@@ -5,11 +5,14 @@
       <p v-else>疯狂会计狮</p>
     </div>
     <el-menu
+      :default-active="$route.path"
       class="el-menu-vertical"
+      @select="selectmenu"
       background-color="#03152A"
       text-color="rgba(255,255,255,.7)"
       active-text-color="#ffffff"
       :unique-opened="true"
+      :router="true"
     >
       <template v-for="(item,index) in aa">
         <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''" :key="index">
@@ -39,23 +42,10 @@ export default {
     return {
       aa: [
         {
-          path: "/",
+          path: "/index",
           iconCls: "el-icon-tickets", // 图标样式class
           name: "test1",
-          children: [
-            {
-              path: "/addArt11icle",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test2",
-              children: []
-            },
-            {
-              path: "/addArti22cleEditor",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test3",
-              children: []
-            }
-          ]
+          children: []
         },
         {
           path: "/",
@@ -63,51 +53,7 @@ export default {
           name: "test1",
           children: [
             {
-              path: "/ad22dArticle",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test2",
-              children: []
-            },
-            {
-              path: "/addA33rticleEditor",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test3",
-              children: []
-            }
-          ]
-        },
-        {
-          path: "/",
-          iconCls: "el-icon-tickets", // 图标样式class
-          name: "test1",
-          children: [
-            {
-              path: "/ad44dArticle",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test2",
-              children: []
-            },
-            {
-              path: "/addArt55icleEditor",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test3",
-              children: []
-            }
-          ]
-        },
-        {
-          path: "/",
-          iconCls: "el-icon-tickets", // 图标样式class
-          name: "test1",
-          children: [
-            {
-              path: "/addA66rticle",
-              iconCls: "el-icon-edit-outline", // 图标样式class
-              name: "test2",
-              children: []
-            },
-            {
-              path: "/addArt134icleEditor",
+              path: "/aa",
               iconCls: "el-icon-edit-outline", // 图标样式class
               name: "test3",
               children: []
@@ -116,6 +62,12 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    selectmenu(val) {
+      // this.$router.push(val);
+      // console.log(val);
+    }
   }
 };
 </script>
