@@ -15,16 +15,16 @@
       :router="true"
     >
       <template v-for="(item,index) in aa">
-        <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''" :key="index">
+        <el-submenu v-if="item.children.length>0" :index="index+''" :key="index">
           <template slot="title">
-            <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>
+            <i :class="item.icon?item.icon:[fa,fa-server]"></i>
             <span slot="title">{{ item.name}}</span>
           </template>
 
           <menu-tree :menuData="item.children"></menu-tree>
         </el-submenu>
         <el-menu-item :index="item.path" :key="index" v-else>
-          <i :class="item.iconCls?item.iconCls:[fa,fa-file]"></i>
+          <i :class="item.icon?item.icon:[fa,fa-file]"></i>
           <span slot="title">{{ item.name }}</span>
         </el-menu-item>
       </template>
@@ -43,18 +43,18 @@ export default {
       aa: [
         {
           path: "/index",
-          iconCls: "el-icon-tickets", // 图标样式class
+          icon: "el-icon-tickets", // 图标样式class
           name: "test1",
           children: []
         },
         {
           path: "/",
-          iconCls: "el-icon-tickets", // 图标样式class
+          icon: "el-icon-tickets", // 图标样式class
           name: "test1",
           children: [
             {
               path: "/aa",
-              iconCls: "el-icon-edit-outline", // 图标样式class
+              icon: "el-icon-edit-outline", // 图标样式class
               name: "test3",
               children: []
             }
