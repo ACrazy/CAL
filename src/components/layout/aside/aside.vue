@@ -14,17 +14,21 @@
       :unique-opened="true"
       :router="true"
     >
-      <template v-for="(item,index) in aa">
-        <el-submenu v-if="item.children.length>0" :index="index+''" :key="index">
+      <template v-for="(item,index) in routers">
+        <el-submenu
+          v-if="!item.single && item.children && item.children.length>0"
+          :index="index+''"
+          :key="item.path"
+        >
           <template slot="title">
-            <i :class="item.icon?item.icon:[fa,fa-server]"></i>
+            <i :class="item.icon"></i>
             <span slot="title">{{ item.name}}</span>
           </template>
-
+          <!-- 侧边栏数据 -->
           <menu-tree :menuData="item.children"></menu-tree>
         </el-submenu>
-        <el-menu-item :index="item.path" :key="index" v-else>
-          <i :class="item.icon?item.icon:[fa,fa-file]"></i>
+        <el-menu-item :index="item.path" :key="item.path" v-else-if="!item.hidden">
+          <i :class="item.icon"></i>
           <span slot="title">{{ item.name }}</span>
         </el-menu-item>
       </template>
@@ -38,23 +42,28 @@ export default {
   components: {
     MenuTree
   },
+  computed: {
+    routers: function() {
+      return this.$router.options.routes;
+    }
+  },
   data() {
     return {
       aa: [
         {
           path: "/index",
-          icon: "el-icon-tickets", // 图标样式class
+          icon: "fa fa-home", // 图标样式class
           name: "test1",
           children: []
         },
         {
           path: "/",
-          icon: "el-icon-tickets", // 图标样式class
+          icon: "fa fa-home", // 图标样式class
           name: "test1",
           children: [
             {
               path: "/aa",
-              icon: "el-icon-edit-outline", // 图标样式class
+              icon: "fa fa-home", // 图标样式class
               name: "test3",
               children: []
             }
@@ -66,8 +75,11 @@ export default {
   methods: {
     selectmenu(val) {
       // this.$router.push(val);
-      // console.log(val);
+      console.log(val);
     }
+  },
+  created() {
+    console.log(this.routers);
   }
 };
 </script>

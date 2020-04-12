@@ -42,8 +42,8 @@ export default {
           path: "/index"
         },
         {
-          title: "达到七千",
-          path: "/aa"
+          title: "系统设置",
+          path: "/system"
         }
       ]
     };

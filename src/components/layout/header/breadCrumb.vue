@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item to="/index">首页</el-breadcrumb-item>
       <el-breadcrumb-item>
         <a>活动管理</a>
       </el-breadcrumb-item>
