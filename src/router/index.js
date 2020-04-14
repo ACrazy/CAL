@@ -7,6 +7,12 @@ const Layout = () => import('@com/layout/layout')
 
 Vue.use(Router)
 
+// 解决两次访问相同路由地址报错
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 let defaultRouter = [{
     path: '/',
     redirect: '/index',
@@ -23,32 +29,30 @@ let defaultRouter = [{
 ]
 
 const contexts = require.context("./", true, /\.js$/);
-let routers = [...defaultRouter];
+let Routers = [...defaultRouter];
 
 contexts.keys().forEach(key => {
   if (contexts(key).default && contexts(key).default.path) {
     contexts(key).default.component = Layout
-    routers.push(contexts(key).default);
+    Routers.push(contexts(key).default);
   }
 })
 
 //404页面跳转
-routers.push({
+Routers.push({
   path: '*',
   icon: 'fa fa-home',
   component: Layout,
   hidden: true
 })
 
-console.log(routers)
-
 const router = new Router({
   mode: 'hash',
-  routes: routers
+  routes: Routers
 })
 
 router.beforeEach((to, from, next) => {
-  // defaultRouter[2].children = [...routers];
+  // defaultRouter[2].children = [...Routers];
   next();
 });
 
