@@ -6,7 +6,7 @@ const sysSetting = {
   children: [{
     path: '/system',
     icon: 'el-icon-setting',
-    name: "系统设置",
+    name: "操作日志",
     single: true,
     component: SysSetting,
     children: []

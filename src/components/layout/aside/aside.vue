@@ -79,7 +79,7 @@ export default {
     }
   },
   created() {
-    console.log(this.routers);
+    // console.log(this.routers);
   }
 };
 </script>

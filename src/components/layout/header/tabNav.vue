@@ -19,9 +19,7 @@
       :style="{left:this.left+'px',top:this.top+'px'}"
       class="menuBox"
     >
-      <li @click="removeTab($store.getters.rightNav)">
-        <i class="fa fa-remove"></i>关闭
-      </li>
+      <li @click="removeTab($store.getters.rightNav)">关闭</li>
       <li @click="removeOtherTab($store.getters.rightNav)">关闭其他</li>
       <li @click="removeAllTab">全部关闭</li>
     </ul>

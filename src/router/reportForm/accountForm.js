@@ -1,12 +1,12 @@
 const SysSetting = () => import('@com/sysSetting/sysSetting')
 
 const sysSetting = {
-  path: '/sysSetting',
-  name: "系统管理",
+  path: '/reportForm',
+  name: "系统报表",
   children: [{
     path: '/system',
     icon: 'el-icon-setting',
-    name: "系统设置",
+    name: "账户报表",
     single: true,
     component: SysSetting,
     children: []

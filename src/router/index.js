@@ -4,6 +4,7 @@ import Router from 'vue-router'
 //路由懒加载，当路由被访问的时候才加载对应组件
 const Login = () => import('@com/login/login')
 const Layout = () => import('@com/layout/layout')
+const page404 = () => import('@com/page404/page404')
 
 Vue.use(Router)
 
@@ -13,37 +14,87 @@ Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-let defaultRouter = [{
+let Routers = [{
     path: '/',
     redirect: '/index',
     hidden: true,
     children: []
   },
   {
-    name: "登录",
     path: '/login',
+    name: "登录",
     component: Login,
     hidden: true,
     children: []
+  },
+  {
+    path: '/index',
+    icon: 'fa fa-home',
+    name: "首页",
+    meta: false,
+    component: Layout,
+    single: true,
+    children: []
+  },
+  {
+    path: '/account',
+    icon: 'el-icon-setting',
+    name: "账户管理",
+    component: Layout,
+    children: []
+  },
+  {
+    path: '/keepAccount',
+    icon: 'el-icon-setting',
+    name: "记账管理",
+    component: Layout,
+    children: []
+  },
+  {
+    path: '/userManage',
+    icon: 'el-icon-setting',
+    name: "用户设置",
+    component: Layout,
+    children: []
+  },
+  {
+    path: '/reportForm',
+    icon: 'el-icon-setting',
+    name: "系统报表",
+    component: Layout,
+    children: []
+  },
+  {
+    path: '/sysSetting',
+    icon: 'el-icon-setting',
+    name: "系统管理",
+    component: Layout,
+    children: []
+  },
+  {
+    path: '/dataConfig',
+    icon: 'el-icon-setting',
+    name: "数据配置",
+    component: Layout,
+    children: []
+  },
+  {
+    path: '*',
+    component: page404,
+    hidden: true
   }
 ]
 
 const contexts = require.context("./", true, /\.js$/);
-let Routers = [...defaultRouter];
 
 contexts.keys().forEach(key => {
   if (contexts(key).default && contexts(key).default.path) {
-    contexts(key).default.component = Layout
-    Routers.push(contexts(key).default);
+    Routers.forEach(item => {
+      if (contexts(key).default.path === item.path) {
+        item.children = [...item.children, ...contexts(key).default.children]
+      }
+    })
   }
-})
-
-//404页面跳转
-Routers.push({
-  path: '*',
-  icon: 'fa fa-home',
-  component: Layout,
-  hidden: true
 })
 
 const router = new Router({
@@ -52,7 +103,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  // defaultRouter[2].children = [...Routers];
   next();
 });
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-for="(child, index) in menuData">
-      <el-submenu v-if="child.children && child.children.length > 0" :index="child.path" :key="index">
+      <el-submenu v-if="!child.single && child.children && child.children.length > 0" :index="child.path" :key="index">
         <template slot="title">
           <i :class="child.icon?child.icon:[fa,fa-file]"></i>
           <span slot="title">{{ child.name }}</span>
