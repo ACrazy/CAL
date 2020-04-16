@@ -1,16 +1,16 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const userConfig = () => import('@com/sysSetting/sysSetting')
 
-const sysSetting = {
+const userManage = {
   path: '/userManage',
   name: "用户管理",
   children: [{
-    path: '/system',
+    path: '/userConfig',
     icon: 'el-icon-setting',
     name: "个性化配置",
     single: true,
-    component: SysSetting,
+    component: userConfig,
     children: []
   }]
 }
 
-export default sysSetting;
+export default userManage;

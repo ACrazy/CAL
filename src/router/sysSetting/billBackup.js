@@ -1,14 +1,14 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const billBackup = () => import('@com/sysSetting/sysSetting')
 
 const sysSetting = {
   path: '/sysSetting',
   name: "系统管理",
   children: [{
-    path: '/system',
+    path: '/billBackup',
     icon: 'el-icon-setting',
     name: "账单备份",
     single: true,
-    component: SysSetting,
+    component: billBackup,
     children: []
   }]
 }

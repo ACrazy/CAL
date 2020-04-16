@@ -1,16 +1,16 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const accountForm = () => import('@com/sysSetting/sysSetting')
 
-const sysSetting = {
+const reportForm = {
   path: '/reportForm',
   name: "系统报表",
   children: [{
-    path: '/system',
+    path: '/accountForm',
     icon: 'el-icon-setting',
     name: "账户报表",
     single: true,
-    component: SysSetting,
+    component: accountForm,
     children: []
   }]
 }
 
-export default sysSetting;
+export default reportForm;

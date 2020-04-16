@@ -1,16 +1,16 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const dataDict = () => import('@com/sysSetting/sysSetting')
 
-const sysSetting = {
+const dataConfig = {
   path: '/dataConfig',
   name: "数据配置",
   children: [{
-    path: '/system',
+    path: '/dataDict',
     icon: 'el-icon-setting',
     name: "数据字典",
     single: true,
-    component: SysSetting,
+    component: dataDict,
     children: []
   }]
 }
 
-export default sysSetting;
+export default dataConfig;

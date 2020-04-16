@@ -1,16 +1,16 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const paramConfig = () => import('@com/sysSetting/sysSetting')
 
-const sysSetting = {
+const dataConfig = {
   path: '/dataConfig',
   name: "数据配置",
   children: [{
-    path: '/system',
+    path: '/paramConfig',
     icon: 'el-icon-setting',
     name: "参数配置",
     single: true,
-    component: SysSetting,
+    component: paramConfig,
     children: []
   }]
 }
 
-export default sysSetting;
+export default dataConfig;

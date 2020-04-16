@@ -1,14 +1,14 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const mesgNot = () => import('@com/sysSetting/sysSetting')
 
 const sysSetting = {
     path: '/sysSetting',
     name: "系统管理",
   children: [{
-    path: '/system',
+    path: '/mesgNot',
     icon: 'el-icon-setting',
     name: "消息通知",
     single: true,
-    component: SysSetting,
+    component: mesgNot,
     children: []
   }]
 }

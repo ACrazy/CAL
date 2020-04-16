@@ -1,16 +1,16 @@
-const SysSetting = () => import('@com/sysSetting/sysSetting')
+const income = () => import('@com/sysSetting/sysSetting')
 
-const sysSetting = {
+const keepAccount = {
   path: '/keepAccount',
   name: "记账管理",
   children: [{
-    path: '/system',
+    path: '/income',
     icon: 'el-icon-setting',
     name: "收入管理",
     single: true,
-    component: SysSetting,
+    component: income,
     children: []
   }]
 }
 
-export default sysSetting;
+export default keepAccount;
