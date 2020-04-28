@@ -12,7 +12,14 @@ const state = {
 }
 const mutations = {
   SET_LOGIN_STATE: (state, arg) => state.loginState = arg,
-  SET_NAV_DATA: (state, arg) => state.navData.push(arg)
+  SET_NAV_DATA: (state, arg) => {
+    for (let i = 0; i < state.navData.length; i++) {
+      if (state.navData[i].path === arg.path) {
+        return false
+      }
+    }
+    state.navData.push(arg)
+  }
 }
 const actions = {
   setLoginState: (context, arg) => context.commit("SET_LOGIN_STATE", arg),

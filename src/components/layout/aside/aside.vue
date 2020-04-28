@@ -56,27 +56,21 @@ export default {
         return;
       }
       let title = this.findNavTittle(val, this.routers);
-      console.log(title);
-      // this.$store.dispatch("setNavData", { title: title, path: val });
+      this.$store.dispatch("setNavData", { title: title, path: val });
     },
     findNavTittle(path, routers) {
-      for (let i = 0; i < routers.length; i++) {
-        if (routers[i].children && routers[i].children.length > 0) {
-          routers[i].children.forEach(item => {
-            // console.log(item);
-            if (item.path === path) {
-              return item.title;
-            }
-          });
-          // console.log(routers[i]);
-        } else {
-          continue;
-        }
-      }
+      let name = "";
+      routers.forEach(item => {
+        const map = data => {
+          if (data.path === path) {
+            name = data.name;
+          }
+          data.children && data.children.forEach(child => map(child));
+        };
+        map(item);
+      });
+      return name;
     }
-  },
-  created() {
-    // console.log(this.routers);
   }
 };
 </script>

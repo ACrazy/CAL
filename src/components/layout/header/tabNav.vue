@@ -19,8 +19,9 @@
       :style="{left:this.left+'px',top:this.top+'px'}"
       class="menuBox"
     >
-      <li @click="removeTab($store.getters.rightNav)">关闭</li>
-      <li @click="removeOtherTab($store.getters.rightNav)">关闭其他</li>
+      <li @click="removeTab">关闭</li>
+      <li @click="removeRight">关闭右侧</li>
+      <li @click="removeOtherTab">关闭其他</li>
       <li @click="removeAllTab">全部关闭</li>
     </ul>
   </div>
@@ -51,7 +52,8 @@ export default {
     return {
       rightMenuShow: false,
       left: 0,
-      top: 0
+      top: 0,
+      tabItem: {}
     };
   },
   methods: {
@@ -63,34 +65,49 @@ export default {
       this.rightMenuShow = true;
       this.left = e.clientX + 10;
       this.top = e.clientY;
-      this.$store.dispatch("openMenu", item);
+      this.tabItem = item;
     },
-    //增加一个tab
-    addTab(tabItem) {},
+    // 删除tab标签
     removeTab(tabItem) {
-      //   this.$store.dispatch("removeTab", {
-      //     tabItem,
-      //     fullPath: this.$route.fullPath,
-      //     router: this.$router
-      //   });
-      let index = this.tabData.findIndex(item => item.path === tabItem.path);
+      const tab = tabItem || this.tabItem;
+      const index = this.tabData.findIndex(item => item.path === tab.path);
+      const isCurPath =
+        this.$router.currentRoute.fullPath === this.tabData[index].path;
+
       this.tabData.splice(index, 1);
+
+      /*
+       * 如果后面有tab标签，取下一个，否则取前面那个
+       */
+      const currence = this.tabData[index]
+        ? this.tabData[index].path
+        : this.tabData[index - 1].path;
+
+      if (isCurPath) {
+        this.$router.push(currence);
+      }
     },
-    removeOtherTab(tabItem) {
-      this.$store.dispatch("removeOtherTab", {
-        tabItem,
-        router: this.$router
-      });
+    // 关闭右侧
+    removeRight() {
+      const index = this.tabData.findIndex(
+        item => item.path === this.tabItem.path
+      );
+
+      this.tabData.splice(index + 1, this.tabData.length);
+
+      this.$router.push(this.tabItem.path);
     },
+    // 关闭其他
+    removeOtherTab() {
+      this.tabData.splice(1, this.tabData.length);
+      this.tabData.push(this.tabItem);
+      this.$router.push(this.tabItem.path);
+    },
+    // 关闭所有
     removeAllTab() {
-      this.$store.dispatch("removeOtherTab", {
-        all: true,
-        router: this.$router
-      });
+      this.tabData.splice(1, this.tabData.length);
+      this.$router.push("/index");
     }
-  },
-  created(){
-    console.log(this.$route.matched)
   }
 };
 </script>
