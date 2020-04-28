@@ -3,9 +3,9 @@
     <div class="tabnavBox">
       <transition-group name="list" tag="ul">
         <li
-          v-for="(item, index) in tabdata"
+          v-for="(item, index) in tabData"
           @contextmenu.prevent="openMenu(item,$event,index)"
-          :key="item.title"
+          :key="item.path"
           class="tabnav"
           :class="{ active: $route.path === item.path }"
         >
@@ -29,24 +29,33 @@
 <script>
 export default {
   name: "tabNav",
+  watch: {
+    rightMenuShow(val) {
+      if (val) {
+        document.body.addEventListener("click", () => {
+          this.rightMenuShow = false;
+        });
+      } else {
+        document.body.removeEventListener("click", () => {
+          this.rightMenuShow = false;
+        });
+      }
+    }
+  },
+  computed: {
+    tabData() {
+      return this.$store.getters.getNavData;
+    }
+  },
   data() {
     return {
       rightMenuShow: false,
       left: 0,
-      top: 0,
-      tabdata: [
-        {
-          title: "主页",
-          path: "/index"
-        },
-        {
-          title: "系统设置",
-          path: "/system"
-        }
-      ]
+      top: 0
     };
   },
   methods: {
+    //右键打开删除菜单
     openMenu(item, e, index) {
       if (index === 0) {
         return false;
@@ -56,14 +65,16 @@ export default {
       this.top = e.clientY;
       this.$store.dispatch("openMenu", item);
     },
+    //增加一个tab
+    addTab(tabItem) {},
     removeTab(tabItem) {
       //   this.$store.dispatch("removeTab", {
       //     tabItem,
       //     fullPath: this.$route.fullPath,
       //     router: this.$router
       //   });
-      let index = this.tabdata.findIndex(item => item.path === tabItem.path);
-      this.tabdata.splice(index, 1);
+      let index = this.tabData.findIndex(item => item.path === tabItem.path);
+      this.tabData.splice(index, 1);
     },
     removeOtherTab(tabItem) {
       this.$store.dispatch("removeOtherTab", {
@@ -78,18 +89,8 @@ export default {
       });
     }
   },
-  watch: {
-    rightMenuShow(value) {
-      if (value) {
-        document.body.addEventListener("click", () => {
-          this.rightMenuShow = false;
-        });
-      } else {
-        document.body.removeEventListener("click", () => {
-          this.rightMenuShow = false;
-        });
-      }
-    }
+  created(){
+    console.log(this.$route.matched)
   }
 };
 </script>
@@ -114,7 +115,8 @@ export default {
   position: absolute;
   transition: all 1s;
 }
-</style><style lang="scss">
+</style>
+<style lang="scss">
 $top: top;
 $bottom: bottom;
 $left: left;

@@ -103,7 +103,13 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  // NProgress.start();
   next();
+  
 });
+
+router.afterEach((to, from, next) => {
+  // NProgress.done()
+})
 
 export default router

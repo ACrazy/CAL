@@ -48,34 +48,31 @@ export default {
     }
   },
   data() {
-    return {
-      aa: [
-        {
-          path: "/index",
-          icon: "fa fa-home", // 图标样式class
-          name: "test1",
-          children: []
-        },
-        {
-          path: "/",
-          icon: "fa fa-home", // 图标样式class
-          name: "test1",
-          children: [
-            {
-              path: "/aa",
-              icon: "fa fa-home", // 图标样式class
-              name: "test3",
-              children: []
-            }
-          ]
-        }
-      ]
-    };
+    return {};
   },
   methods: {
     selectmenu(val) {
-      // this.$router.push(val);
-      console.log(val);
+      if (val === "/index") {
+        return;
+      }
+      let title = this.findNavTittle(val, this.routers);
+      console.log(title);
+      // this.$store.dispatch("setNavData", { title: title, path: val });
+    },
+    findNavTittle(path, routers) {
+      for (let i = 0; i < routers.length; i++) {
+        if (routers[i].children && routers[i].children.length > 0) {
+          routers[i].children.forEach(item => {
+            // console.log(item);
+            if (item.path === path) {
+              return item.title;
+            }
+          });
+          // console.log(routers[i]);
+        } else {
+          continue;
+        }
+      }
     }
   },
   created() {

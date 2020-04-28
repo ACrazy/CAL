@@ -5,23 +5,18 @@ Vue.use(Vuex)
 
 const state = {
   loginState: true, //是否进入登录界面
-  navData: []
+  navData: [{
+    title: '首页',
+    path: '/index'
+  }]
 }
 const mutations = {
-  SET_LOGIN_STATE(state, status) {
-    state.loginState = status
-  },
-  SET_NAV_DATA(state, data) {
-    state.navData = data
-  }
+  SET_LOGIN_STATE: (state, arg) => state.loginState = arg,
+  SET_NAV_DATA: (state, arg) => state.navData.push(arg)
 }
 const actions = {
-  setLoginState(context, status) {
-    context.commit("SET_LOGIN_STATE", status)
-  },
-  setNavData(context, data) {
-    context.commit("SET_NAV_DATA", data)
-  }
+  setLoginState: (context, arg) => context.commit("SET_LOGIN_STATE", arg),
+  setNavData: (context, arg) => context.commit("SET_NAV_DATA", arg)
 }
 const getters = {
   getLoginState: state => state.loginState,

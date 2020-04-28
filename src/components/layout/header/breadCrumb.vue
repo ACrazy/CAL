@@ -1,12 +1,17 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item v-for="(item,index) in breadList" :key="index" :to="toPath(item.path)">{{item.name}}</el-breadcrumb-item>
+      <el-breadcrumb-item
+        v-for="(item,index) in breadList"
+        :key="index"
+        :to="toPath(item.path)"
+      >{{item.name}}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 <script>
 export default {
+  name: "breadCrumb",
   data() {
     return {
       breadList: []
@@ -22,7 +27,7 @@ export default {
       return route.path === "/index";
     },
     //跳转path是否为导航栏父节点
-    isLegal(path){
+    isLegal(path) {
       return this.$route.matched[0].path !== path;
     },
     getBreadcrumb() {
