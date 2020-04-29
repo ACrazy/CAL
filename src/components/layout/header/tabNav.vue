@@ -70,7 +70,7 @@ export default {
     // 删除tab标签
     removeTab(tabItem) {
       const tab = tabItem || this.tabItem;
-      console.log(tab)
+      
       const index = this.tabData.findIndex(item => item.path === tab.path);
       const isCurPath =
         this.$router.currentRoute.fullPath === this.tabData[index].path;
@@ -90,13 +90,26 @@ export default {
     },
     // 关闭右侧
     removeRight() {
-      const index = this.tabData.findIndex(
-        item => item.path === this.tabItem.path
-      );
+      let curIndex = 0;
+      let clickIndex = 0;
+      
+      this.tabData.forEach((item, index) => {
+        if (item.path === this.tabItem.path) {
+          clickIndex = index;
+        }
+        if (item.path === this.$router.currentRoute.fullPath) {
+          curIndex = index;
+        }
+      });
 
-      this.tabData.splice(index + 1, this.tabData.length);
+      this.tabData.splice(clickIndex + 1, this.tabData.length);
 
-      this.$router.push(this.tabItem.path);
+      const path =
+        curIndex < clickIndex
+          ? this.$router.currentRoute.fullPath
+          : this.tabItem.path;
+
+      this.$router.push(path);
     },
     // 关闭其他
     removeOtherTab() {
@@ -133,8 +146,7 @@ export default {
   position: absolute;
   transition: all 1s;
 }
-</style>
-<style lang="scss">
+</style><style lang="scss">
 $top: top;
 $bottom: bottom;
 $left: left;
