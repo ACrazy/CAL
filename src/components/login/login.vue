@@ -47,7 +47,7 @@ export default {
     return {
       smdl: true,
       loginForm: {
-        username: "vue-xuadmin",
+        username: "admin",
         password: "123456"
       }
     };

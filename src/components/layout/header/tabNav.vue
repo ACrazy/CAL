@@ -19,7 +19,7 @@
       :style="{left:this.left+'px',top:this.top+'px'}"
       class="menuBox"
     >
-      <li @click="removeTab">关闭</li>
+      <li @click="removeTab()">关闭</li>
       <li @click="removeRight">关闭右侧</li>
       <li @click="removeOtherTab">关闭其他</li>
       <li @click="removeAllTab">全部关闭</li>
@@ -70,6 +70,7 @@ export default {
     // 删除tab标签
     removeTab(tabItem) {
       const tab = tabItem || this.tabItem;
+      console.log(tab)
       const index = this.tabData.findIndex(item => item.path === tab.path);
       const isCurPath =
         this.$router.currentRoute.fullPath === this.tabData[index].path;
