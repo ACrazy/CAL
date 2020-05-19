@@ -146,7 +146,9 @@ export default {
   position: absolute;
   transition: all 1s;
 }
-</style><style lang="scss">
+</style>
+
+<style lang="scss">
 $top: top;
 $bottom: bottom;
 $left: left;
@@ -201,9 +203,11 @@ $leftright: ($left, $right);
 
       overflow: hidden;
 
+      min-width: 50px;
+
       &:not(:first-child) {
         padding-#{$right}: 10px;
-        min-width: 80px;
+        min-width: 76px;
       }
 
       a {

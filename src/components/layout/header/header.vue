@@ -84,7 +84,7 @@ export default {
     },
     handleCommand(command) {
       if (command === "logout") {
-        this.$router.push("/login")
+        this.$router.push("/login");
       }
     }
   }
@@ -161,6 +161,10 @@ ul.el-menu {
 
     .icon {
       margin-top: 5px;
+      .item {
+        margin-top: 10px;
+        margin-right: 40px;
+      }
     }
   }
 }
