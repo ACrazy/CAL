@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Copyright © 2018 crazy.</p>
+    <p>Copyright © 2018 crazy. <a href="http://beian.miit.gov.cn/">备案号粤ICP备18081545号</a></p>
   </div>
 </template>
 

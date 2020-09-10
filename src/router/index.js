@@ -98,7 +98,7 @@ contexts.keys().forEach(key => {
 })
 
 const router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: Routers
 })
 
