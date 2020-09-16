@@ -5,7 +5,17 @@
       :tableColumns="tableColumns"
       :searchForm="searchForm"
       @search="search"
-    ></search-page>
+    >
+      <template v-slot:searchForm>
+        <el-form-item label="审批人">
+          <el-input v-model="searchForm.user" placeholder="审批人"></el-input>
+        </el-form-item>
+      </template>
+
+      <template v-slot:button>
+        <el-button type="primary" @click="onSubmit">新增</el-button>
+      </template>
+    </search-page>
   </div>
 </template>
 

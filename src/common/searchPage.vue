@@ -1,10 +1,11 @@
 <template>
   <div id="searchPage">
     <el-form :inline="true" :model="searchForm">
-      <el-form-item label="审批人">
-        <el-input v-model="searchForm.user" placeholder="审批人"></el-input>
-      </el-form-item>
+      <!-- 自定义搜索输入框slot -->
+      <slot name="searchForm"></slot>
       <el-form-item>
+        <!-- 自定义按钮slot -->
+        <slot name="button"></slot>
         <el-button type="primary" @click="onSubmit">查询</el-button>
         <el-button type="info" @click="onReset">重置</el-button>
       </el-form-item>
@@ -63,19 +64,17 @@ export default {
       currentPage: 1,
       pageSize: 10,
       totalCount: 100,
-    //   searchForm: {}
     };
   },
   methods: {
     handleSizeChange(size) {
-        this.pageSize = size;
-        this.currentPage = 1;
+      this.pageSize = size;
+      this.currentPage = 1;
       this.$emit("search", this.currentPage, this.pageSize);
     },
     handleCurrentChange(page) {
-        this.currentPage = page;
+      this.currentPage = page;
       this.$emit("search", this.currentPage, this.pageSize);
-
     },
     onSubmit() {
       this.$emit("search", 1, this.pageSize, this.searchForm);
