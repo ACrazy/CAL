@@ -28,7 +28,7 @@
             </el-dropdown-menu>
           </el-dropdown>
         </li>
-        <li class="icon">
+        <li class="icon" @click="toUserInfo">
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
         </li>
       </ul>
@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       isfullScreen: true,
-      avatar: "./static/images/icon.jpg"
+      avatar: "./static/images/icon.jpg",
     };
   },
   methods: {
@@ -86,8 +86,11 @@ export default {
       if (command === "logout") {
         this.$router.push("/login");
       }
-    }
-  }
+    },
+    toUserInfo() {
+      this.$router.push("/userInfo");
+    },
+  },
 };
 </script>
 
@@ -161,6 +164,7 @@ ul.el-menu {
 
     .icon {
       margin-top: 5px;
+      cursor: pointer;
       .item {
         margin-top: 10px;
         margin-right: 40px;

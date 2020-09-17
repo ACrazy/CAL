@@ -1,7 +1,7 @@
 <template>
   <el-aside id="asideNav">
     <div class="logo-name">
-      <p v-if="$store.getters.logoShow">XU</p>
+      <p v-if="$store.getters.logoShow">ACer</p>
       <p v-else>疯狂会计狮</p>
     </div>
     <el-menu
@@ -91,7 +91,7 @@ export default {
       line-height: 50px;
       text-align: center;
       font-size: 16px;
-      color: #5e6d82;
+      color: #ffffffb3;
       font-weight: bold;
     }
   }

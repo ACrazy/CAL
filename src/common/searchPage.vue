@@ -15,7 +15,7 @@
       <!-- 表格 -->
       <el-table :data="tableData" :stripe="true">
         <el-table-column
-          v-for="(item,index) in tableColumns"
+          v-for="(item, index) in tableColumns"
           :key="index"
           :prop="item.key"
           :label="item.title"
@@ -32,7 +32,7 @@
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="totalCount"
-        v-show="totalCount>10"
+        v-show="totalCount > 10"
         class="pagination"
       ></el-pagination>
     </el-card>
@@ -44,26 +44,26 @@ export default {
   props: {
     searchForm: {
       type: Object,
-      default: {},
+      default: {}
     },
     tableData: {
       type: Array,
-      default: {},
+      default: {}
     },
     tableColumns: {
       type: Array,
-      default: {},
+      default: {}
     },
     isInit: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   data() {
     return {
       currentPage: 1,
       pageSize: 10,
-      totalCount: 100,
+      totalCount: 100
     };
   },
   methods: {
@@ -79,13 +79,15 @@ export default {
     onSubmit() {
       this.$emit("search", 1, this.pageSize, this.searchForm);
     },
-    onReset() {},
+    onReset() {
+      Object.keys(this.searchForm).forEach(key => (this.searchForm[key] = ""));
+    }
   },
   created() {
     if (this.isInit) {
       this.$emit("search", 1, this.pageSize);
     }
-  },
+  }
 };
 </script>
 

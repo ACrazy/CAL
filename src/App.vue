@@ -6,6 +6,23 @@
   </div>
 </template>
 <script>
+export default {
+  watch: {
+    "$store.state.navData": function (newVal) {
+      sessionStorage.setItem(
+        "navData",
+        JSON.stringify(this.$store.state.navData)
+      );
+    },
+  },
+  mounted() {
+    if (sessionStorage.getItem("navData")) {
+      this.$store.state.navData = [
+        ...JSON.parse(sessionStorage.getItem("navData")),
+      ];
+    }
+  },
+};
 </script>
 <style scoped>
 body {

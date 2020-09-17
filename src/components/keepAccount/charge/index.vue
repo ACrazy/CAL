@@ -6,14 +6,14 @@
       :searchForm="searchForm"
       @search="search"
     >
-      <template v-slot:searchForm>
+      <template #searchForm>
         <el-form-item label="审批人">
-          <el-input v-model="searchForm.user" placeholder="审批人"></el-input>
+          <el-input v-model="searchForm.user" placeholder="请输入审批人"></el-input>
         </el-form-item>
       </template>
 
-      <template v-slot:button>
-        <el-button type="primary" @click="onSubmit">新增</el-button>
+      <template #button>
+        <el-button type="primary" @click="addCharge">新增</el-button>
       </template>
     </search-page>
   </div>
@@ -59,13 +59,14 @@ export default {
     };
   },
   methods: {
+    // 搜索账单信息
     search(page, pageSize) {
       console.log(page, pageSize, this.searchForm);
     },
-    handleSizeChange() {},
-    handleCurrentChange() {},
-    onSubmit() {},
-    onReset() {},
+    // 新增一笔支出账单
+    addCharge() {
+
+    }
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row :gutter="20" class="card">
-      <el-col :span="8">
+      <el-col :span="8" class="card-info">
         <el-card>
           <p class="title">
             <i class="fa fa-th-large fa-lg"></i>快捷方式
@@ -60,7 +60,7 @@
           </ul>
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="8" class="card-info">
         <el-card>
           <p class="title">
             <i class="fa fa-file-text-o"></i>收支情况
@@ -95,12 +95,18 @@
           </ul>
         </el-card>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="8" class="card-info">
         <el-card>
           <p class="title">
             <i class="fa fa-file-text-o"></i>待办事项
           </p>
-          <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
+          <div class="text">
+            <div
+              v-for="(o,index) in 5"
+              :key="o"
+              class="item"
+            >{{`${index+1}、列表内容列表内容列表内容列表内容列表内容列表内容列表内容列表内容${o}`}}</div>
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -196,11 +202,19 @@ $lightBluee: #b8d6ff;
     }
   }
   .text {
-    font-size: 14px;
+    .item {
+      font-size: 14px;
+      padding: 16px 16px;
+      margin-left: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
-  .item {
-    padding: 18px 0;
+  .card-info {
+    height: 336px;
+    overflow: hidden;
   }
 }
 </style>
