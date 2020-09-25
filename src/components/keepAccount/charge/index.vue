@@ -16,6 +16,35 @@
         <el-button type="primary" @click="addCharge">新增</el-button>
       </template>
     </search-page>
+
+    <el-dialog
+      title="新增支出"
+      :visible.sync="dialogVisible"
+      width="640"
+      :close-on-click-modal="false"
+    >
+    <el-Form :inline="true" style="padding: 0 20px">
+        <el-form-item label="审批人">
+          <el-input v-model="searchForm.user" placeholder="请输入审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="审批人">
+          <el-input v-model="searchForm.user" placeholder="请输入审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="审批人">
+          <el-input v-model="searchForm.user" placeholder="请输入审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="审批人">
+          <el-input v-model="searchForm.user" placeholder="请输入审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="审批人">
+          <el-input v-model="searchForm.user" placeholder="请输入审批人"></el-input>
+        </el-form-item>
+    </el-Form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -31,6 +60,7 @@ export default {
       pageSize: 10,
       totalCount: 100,
       searchForm: {},
+      dialogVisible: false,
       tableData: [
         { number: 1 },
         { number: 2 },
@@ -65,8 +95,8 @@ export default {
     },
     // 新增一笔支出账单
     addCharge() {
-
-    }
+      this.dialogVisible = true;
+    },
   },
 };
 </script>

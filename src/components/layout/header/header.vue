@@ -89,6 +89,7 @@ export default {
     },
     toUserInfo() {
       this.$router.push("/userInfo");
+      this.$store.dispatch("setNavData", { title: "个人信息", path: "/userInfo" });
     },
   },
 };

@@ -1,4 +1,4 @@
-const userInfo = () => import('@com/sysSetting/sysSetting')
+const userInfo = () => import('@com/userManage/userInfo')
 
 const userManage = {
   path: '/userManage',
