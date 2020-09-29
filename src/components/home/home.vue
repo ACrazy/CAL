@@ -12,7 +12,7 @@
                 <span>
                   <i class="el-icon-tickets fa-2x"></i>
                 </span>
-                <span>发表文章</span>
+                <span>固定支出</span>
               </router-link>
             </li>
             <li>
@@ -20,7 +20,7 @@
                 <span>
                   <i class="fa fa-hand-stop-o fa-2x"></i>
                 </span>
-                <span>拖拽排序</span>
+                <span>支出管理</span>
               </router-link>
             </li>
             <li>
@@ -28,17 +28,17 @@
                 <span>
                   <i class="fa fa-universal-access fa-2x"></i>
                 </span>
-                <span>权限测试</span>
+                <span>收入管理</span>
               </router-link>
             </li>
           </ul>
           <ul>
             <li>
-              <router-link to="/upload" class="kjfs kjfs-grennn">
+              <router-link to="/userToDo" class="kjfs kjfs-grennn">
                 <span>
                   <i class="fa fa-cloud-upload fa-2x"></i>
                 </span>
-                <span>文件上传</span>
+                <span>待办事项</span>
               </router-link>
             </li>
             <li>
@@ -46,7 +46,7 @@
                 <span>
                   <i class="fa el-icon-menu fa-2x"></i>
                 </span>
-                <span>前台菜单</span>
+                <span>用户信息</span>
               </router-link>
             </li>
             <li>
